@@ -241,6 +241,14 @@ BEGIN
 			activo			BIT DEFAULT 1
 		)
 END
+BEGIN
+	CREATE	TABLE Catalogos.ConceptosCarga
+		(
+			id					SMALLINT IDENTITY(1,1) PRIMARY KEY,
+			nombreConceptoCarga	VARCHAR(100),
+			activo				BIT DEFAULT 1
+		)
+END
 GO
 IF 
 (
@@ -475,7 +483,7 @@ BEGIN
 			montoFormatoPago	NUMERIC(10, 2),
 			facturable			BIT DEFAULT 1,
 			carga				BIT DEFAULT 0,
-			conceptoCarga		CHAR(200) NULL
+			idConceptoCarga		SMALLINT REFERENCES Catalogos.ConceptosCarga(id)
 		)
 END
 GO
