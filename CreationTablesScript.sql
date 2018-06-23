@@ -245,6 +245,7 @@ BEGIN
 	CREATE	TABLE Catalogos.ConceptosCarga
 		(
 			id					SMALLINT IDENTITY(1,1) PRIMARY KEY,
+			idEntidadTramite	SMALLINT REFERENCES Catalogos.EntidadTramite(id),
 			nombreConceptoCarga	VARCHAR(100),
 			activo				BIT DEFAULT 1
 		)
@@ -261,6 +262,7 @@ BEGIN
 	CREATE TABLE Catalogos.RequerimientoTramite
 		(
 			id						SMALLINT IDENTITY(1, 1) PRIMARY KEY,
+			idEntidadTramite		SMALLINT,
 			requerimientoTramite	VARCHAR(150),
 			activo					BIT DEFAULT 1
 		)
@@ -472,6 +474,7 @@ BEGIN
 			idTipoTramite		SMALLINT REFERENCES Catalogos.TipoTramite(id),
 			idEntidadTramite	SMALLINT REFERENCES Catalogos.EntidadTramite(id),
 			idTramiteStatus		SMALLINT REFERENCES Catalogos.TramiteStatus(id) NULL,
+			idConceptoCarga		SMALLINT REFERENCES Catalogos.ConceptosCarga(id) NULL,
 			nombre				CHAR(200) NOT NULL,
 			apellidoPaterno		CHAR(80) NULL,
 			apellidoMaterno		CHAR(80) NULL,
@@ -482,8 +485,7 @@ BEGIN
 			personaMoral		BIT DEFAULT 0,
 			montoFormatoPago	NUMERIC(10, 2),
 			facturable			BIT DEFAULT 1,
-			carga				BIT DEFAULT 0,
-			idConceptoCarga		SMALLINT REFERENCES Catalogos.ConceptosCarga(id)
+			carga				BIT DEFAULT 0
 		)
 END
 GO
