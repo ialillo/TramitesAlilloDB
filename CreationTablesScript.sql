@@ -241,6 +241,13 @@ BEGIN
 			activo			BIT DEFAULT 1
 		)
 END
+IF 
+(
+	SELECT	COUNT(1)
+	FROM	INFORMATION_SCHEMA.TABLES
+	WHERE	TABLE_NAME = 'ConceptosCarga'
+			AND TABLE_SCHEMA = 'Catalogos'
+) = 0
 BEGIN
 	CREATE	TABLE Catalogos.ConceptosCarga
 		(
@@ -351,6 +358,41 @@ BEGIN
 			dia					VARCHAR(10),
 			color				VARCHAR(10),
 			terminacionPlaca	VARCHAR(10),
+			activo				BIT DEFAULT 1
+		)
+END
+/*
+GO
+IF 
+(
+	SELECT	COUNT(1)
+	FROM	INFORMATION_SCHEMA.TABLES
+	WHERE	TABLE_NAME = 'MailTramites'
+			AND TABLE_SCHEMA = 'Catalogos'
+) = 0
+BEGIN
+	CREATE TABLE Catalogos.MailTramites
+		(
+			id					SMALLINT IDENTITY(1, 1) PRIMARY KEY,
+			email				VARCHAR(100),
+			activo				BIT DEFAULT 1
+		)
+END
+*/
+GO
+IF 
+(
+	SELECT	COUNT(1)
+	FROM	INFORMATION_SCHEMA.TABLES
+	WHERE	TABLE_NAME = 'ModulosConclusion'
+			AND TABLE_SCHEMA = 'Catalogos'
+) = 0
+BEGIN
+	CREATE TABLE Catalogos.ModulosConclusion
+		(
+			id					SMALLINT IDENTITY(1, 1) PRIMARY KEY,
+			idEntidadTramite	SMALLINT REFERENCES Catalogos.EntidadTramite(id),
+			modulo				VARCHAR(100),
 			activo				BIT DEFAULT 1
 		)
 END
@@ -468,24 +510,24 @@ IF
 BEGIN
 	CREATE TABLE Tramites.Tramite
 		(
-			id					BIGINT IDENTITY(1, 1) PRIMARY KEY,
-			idUsuario			SMALLINT REFERENCES Seguridad.Usuarios(id),
-			idAgencia			SMALLINT REFERENCES Agencias(id),
-			idTipoTramite		SMALLINT REFERENCES Catalogos.TipoTramite(id),
-			idEntidadTramite	SMALLINT REFERENCES Catalogos.EntidadTramite(id),
-			idTramiteStatus		SMALLINT REFERENCES Catalogos.TramiteStatus(id) NULL,
-			idConceptoCarga		SMALLINT REFERENCES Catalogos.ConceptosCarga(id) NULL,
-			nombre				CHAR(200) NOT NULL,
-			apellidoPaterno		CHAR(80) NULL,
-			apellidoMaterno		CHAR(80) NULL,
-			anioModelo			INT,
-			noFactura			CHAR(15),
-			serie				CHAR(17),
-			placa				CHAR(8),
-			personaMoral		BIT DEFAULT 0,
-			montoFormatoPago	NUMERIC(10, 2),
-			facturable			BIT DEFAULT 1,
-			carga				BIT DEFAULT 0
+			id							BIGINT IDENTITY(1, 1) PRIMARY KEY,
+			idUsuario					SMALLINT REFERENCES Seguridad.Usuarios(id),
+			idAgencia					SMALLINT REFERENCES Agencias(id),
+			idTipoTramite				SMALLINT REFERENCES Catalogos.TipoTramite(id),
+			idEntidadTramite			SMALLINT REFERENCES Catalogos.EntidadTramite(id),
+			idTramiteStatus				SMALLINT REFERENCES Catalogos.TramiteStatus(id) NULL,
+			idConceptoCarga				SMALLINT REFERENCES Catalogos.ConceptosCarga(id) NULL,
+			fechaRecepcionTramite		DATETIME NOT NULL,
+			nombre						CHAR(200) NOT NULL,
+			apellidoPaterno				CHAR(80) NULL,
+			apellidoMaterno				CHAR(80) NULL,
+			anioModelo					INT NULL,
+			noFactura					CHAR(15) NULL,
+			serie						CHAR(20) NOT NULL,
+			personaMoral				BIT DEFAULT 0,
+			facturable					BIT DEFAULT 1,
+			carga						BIT DEFAULT 0,
+			electronico					BIT DEFAULT 1
 		)
 END
 GO
@@ -558,5 +600,45 @@ BEGIN
 			idPerfil			TINYINT REFERENCES Seguridad.Perfiles(id),
 			idEntidadTramite	SMALLINT REFERENCES Catalogos.EntidadTramite(id),
 			UNIQUE(idPerfil, idEntidadTramite)
+		)
+END
+GO
+IF 
+(
+	SELECT	COUNT(1)
+	FROM	INFORMATION_SCHEMA.TABLES
+	WHERE	TABLE_NAME = 'AvanceTramiteStatus'
+			AND TABLE_SCHEMA = 'Tramites'
+) = 0
+BEGIN
+	CREATE TABLE Tramites.AvanceTramiteStatus
+		(
+			idTramite			BIGINT REFERENCES Tramites.Tramite(id),
+			idStatus			SMALLINT REFERENCES Catalogos.TramiteStatus(id),
+			idUsuario			SMALLINT REFERENCES Seguridad.Usuarios(id),
+			fecha				DATETIME,
+			UNIQUE(idTramite, idStatus, idUsuario, fecha)
+		)
+END
+GO
+IF 
+(
+	SELECT	COUNT(1)
+	FROM	INFORMATION_SCHEMA.TABLES
+	WHERE	TABLE_NAME = 'TramiteDetalle'
+			AND TABLE_SCHEMA = 'Tramites'
+) = 0
+BEGIN
+	CREATE TABLE Tramites.TramiteDetalle
+		(
+			idTramite			BIGINT REFERENCES Tramites.Tramite(id) NOT NULL,
+			idModuloConclusion	SMALLINT REFERENCES Catalogos.ModulosConclusion(id) NULL,
+			folio				CHAR(50) NULL,
+			mailTramite			VARCHAR(200) NULL,
+			numeroLineaCaputra	CHAR(80) NULL,
+			fechaVencimientoLC	DATETIME NULL,
+			fechaCita			DATETIME NULL,
+			fechaEntrega		DATETIME NULL,
+			numPlaca			CHAR(10) NULL
 		)
 END

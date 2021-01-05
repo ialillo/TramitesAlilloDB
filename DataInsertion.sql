@@ -120,9 +120,9 @@ SELECT	'ACTA POR ROBO ANTE MINISTERIO PUBLICO'
 INSERT	INTO Catalogos.RequerimientoTramite(requerimientoTramite)
 SELECT	'ACTA DE EXTRAVIO'
 INSERT	INTO Catalogos.RequerimientoTramite(requerimientoTramite)
-SELECT	'PLACAS'
+SELECT	'PLACAS O BAJA'
 INSERT	INTO Catalogos.RequerimientoTramite(requerimientoTramite)
-SELECT	'PAGO DE TENENCIAS'
+SELECT	'5 ULTIMAS TENENCIAS'
 INSERT	INTO Catalogos.RequerimientoTramite(requerimientoTramite)
 SELECT	'FOTOGRAFIA CHOFER TAMAÑO INFANTIL'
 INSERT	INTO Catalogos.RequerimientoTramite(requerimientoTramite)
@@ -144,13 +144,11 @@ SELECT	'BAJA & ALTA'
 INSERT	INTO Catalogos.TipoTramite(tipoTramite)
 SELECT	'BAJA & ALTA CON C/PROP'
 INSERT	INTO Catalogos.TipoTramite(tipoTramite)
-SELECT	'BAJA & ALTA OTRA ENTIDAD'
-INSERT	INTO Catalogos.TipoTramite(tipoTramite)
-SELECT	'BAJA & ALTA CON C/PROP OTRA ENTIDAD'
-INSERT	INTO Catalogos.TipoTramite(tipoTramite)
 SELECT	'BAJA CON C/PROP'
 INSERT	INTO Catalogos.TipoTramite(tipoTramite)
-SELECT	'PERMISO PARA CIRCULAR SIN PLACAS'
+SELECT	'BAJA & ALTA OTRA ENTIDAD'
+INSERT	INTO Catalogos.TipoTramite(tipoTramite)
+SELECT	'PERMISOS PARA CIRCULAR SIN PLACAS'
 INSERT	INTO Catalogos.TipoTramite(tipoTramite)
 SELECT	'CONVENIO DE CARGA TRANSPORTISTAS CDMX'
 
@@ -205,49 +203,73 @@ FROM	Seguridad.Perfiles per CROSS JOIN Catalogos.EntidadTramite et
 WHERE	per.id = 1
 
 -- LLENAMOS EL CATALOGO DE CONCEPTOS DE CARGA
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ABARROTESALIMENTOS VARIOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ANUNCIOS Y LO RELAC.'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ABARROTES'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ALIMENTOS VARIOS'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ALUMINIO Y VIDRIO'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ANUNCIOS Y LO RELACIONADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ARTICULOS DEPORTIVOS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ARTICULOS PARA EL HOGAR'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'AVICULTURA Y LO RELAC.'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'AVICULTURA Y LO RELACIONADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'BANQUETES'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'BEBIDAS ALCOHOLICAS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'BEBIDAS EMBOTELLADAS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'CARNES Y EMBUTIDOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'CARROZA Y LO REL. FUNERARIA'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'CORROSIVOS'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'CONVERTIDOR'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'DESPERDICIOS INDUSTRIALES NO PELIGROSOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'EXPLOSIVOS'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'EQUIPO MEDICO Y LO RELACIONADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'FERRETERIA, PLOMERIA,TLAPALERIA'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'FLORESFUNERARIOS'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'FLORES'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'FLORES FRUTAS LEGUMBRES Y ABARROTES'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'GANADO EN GENERAL'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'GASES COMPRIMIDOS REFRIGERADOS LICUADOS O DISUELTOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'HERRERIAHIELOJALA REMOLQUE'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'HERRERIA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'HIELO'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'JALA REMOLQUE'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'JARDINERIA Y SIMILAR'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'JUGUETES'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LACTEOS Y LO RELAC.'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LACTEOS Y LO RELACIONADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LAVANDERIA Y TINTORERIA'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LITOGRAFIA Y PAPELERIA'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LO REL. A LA EMPRESA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'LO RELACIONADO A LA EMPRESA'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'MAQUINARIA Y EQUIPO EN GENERAL'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'MATERIAL ELECTRICO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'MATERIALES DE CONSTRUCCION'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'MENSAJERIA Y PAQUETERIA'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'METALES'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'MUEBLES EN GENERAL'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'NUPCIAL'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'NO TRANSPORTA CARGA'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'OXIDANTES Y PEROXIDOS ORGANICOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PAN Y SIMILARESPAPEL INDUSTRIALPAPELERIA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PAN Y SIMILARES'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PAPEL INDUSTRIAL'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PAPELERIA EN GENERAL'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PARTES AUTOMOTRICES Y REFACCIONES EN GRAL.'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PARTICULARPIPA'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PROD. AGRICOLAS Y LO REL. CAMPO'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PARTES AUTOMOTRICES Y REFACCIONES EN GENERAL'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PARTICULAR, NO TRANSPORTA CARGA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PIPA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PLÁSTICOS'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS AGRICOLAS Y LO RELACIONADO AL CAMPO'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS AGRICOLAS Y GANADO'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS FARMACÉUTICOS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS FORESTALES'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS MINERALES NO METALURGICOS'
-INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS QUIMICOS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'PRODUCTOS QUIMICOS NO PELIGROSOS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'RELACIONADO CON LA MINERIA'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'ROPA Y CALZADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'TEXTILES'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'TRANSPORTE DE MOTOCICLETAS'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'USO DE CASA HABITACION'
+INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'VETERINARIA Y LO RELACIONADO'
 INSERT INTO Catalogos.ConceptosCarga(idEntidadTramite, nombreConceptoCarga) SELECT 1, 'VIDRIERIA'
+
+/*
+-- LLENAMOS EL CATALOGO DE EMAILS QUE USAMOS PARA REALIZAR LOS TRAMITES ELECTRONICOS
+INSERT INTO Catalogos.MailTramites(email, activo) SELECT 'flotillasgpoautofin@outlook.com', 1
+INSERT INTO Catalogos.MailTramites(email, activo) SELECT 'controlautofin@gmail.com', 1
+INSERT INTO Catalogos.MailTramites(email, activo) SELECT 'imperiointerlomas@protonmail.com', 1
+INSERT INTO Catalogos.MailTramites(email, activo) SELECT 'dunder.mifflin.inc83@gmail.com', 1
+INSERT INTO Catalogos.MailTramites(email, activo) SELECT 'capitan.memo@outlook.com', 1
+*/
+
+-- LLENAMOS EL CATALOGO DE MODULOS DE CONCLUSION
+INSERT INTO Catalogos.ModulosConclusion(idEntidadTramite, modulo, activo) SELECT 1, 'CITY SHOPS', 1
+INSERT INTO Catalogos.ModulosConclusion(idEntidadTramite, modulo, activo) SELECT 1, 'LA CUSPIDE', 1
+INSERT INTO Catalogos.ModulosConclusion(idEntidadTramite, modulo, activo) SELECT 1, 'INTERLOMAS', 1
+INSERT INTO	Catalogos.ModulosConclusion(idEntidadTramite, modulo, activo) SELECT 2, 'SEMOVI', 1
